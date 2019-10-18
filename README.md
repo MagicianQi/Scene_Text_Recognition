@@ -1,21 +1,20 @@
-# 场景文本识别（Scene_Text_Recognition）
+# Scene_Text_Recognition
 
-* 文本检测模型为Advanced EAST,代码及模型来自：https://github.com/huoyijie/AdvancedEAST
-* 文本识别模型为CRNN实现，代码及模型来自：https://github.com/chineseocr/chineseocr
+* Text detection model：Advanced EAST,code is from：https://github.com/huoyijie/AdvancedEAST
+* Text recognition model：CRNN，code is from：https://github.com/chineseocr/chineseocr
 
-## 简单介绍
+## Intro
 
-* Advanced EAST 以及 CRNN 都使用TF Serving部署。
-* EAST TF Serving接收图片base64，比直接接收图像速度快很多。
-* CRNN模型中将LSTM改为CUDNNLSTM，速度提升约4倍。
-* 使用docker部署服务。
+* Advanced EAST and CRNN are deploying with TF-Serving。
+* EAST TF-Serving receive image base64，much faster than receiving images directly。
+* CRNN model: Change LSTM to CUDNNLSTM, speed increased by about 4 times.
 
-## 环境
+## The environment
 
 * docker - https://docs.docker.com/install/linux/docker-ce/ubuntu/
 * nvidia-docker - https://github.com/NVIDIA/nvidia-docker
 
-## How to use
+## Run
 
 * `sudo docker pull tensorflow/serving:1.13.0-gpu`
 * `wget https://github.com/MagicianQi/Scene_Text_Recognition/releases/download/v1.0/flask-uwsgi-python-centos.tar && sudo docker load -i flask-uwsgi-python-centos.tar`
@@ -30,7 +29,7 @@
 * `bash deploy.sh`
 * Test: `curl localhost:8080`
 
-## 测试
+## Test
 
-* 测试：https://IP:8080/test
-* 其他接口见：https://github.com/MagicianQi/Scene_Text_Recognition/blob/master/flask_server.py
+* Address of the test：https://IP:8080/test
+* Other API：https://github.com/MagicianQi/Scene_Text_Recognition/blob/master/flask_server.py
