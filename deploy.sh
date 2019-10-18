@@ -9,7 +9,7 @@ sudo docker run \
 -d \
 -e CUDA_VISIBLE_DEVICES=0 \
 -p 8500:8500 -p 8501:8501 \
---mount type=bind,source=./models/crnn,target=/models/crnn \
+--mount type=bind,source=/home/user/Scene_Text_Recognition/models/crnn,target=/models/crnn \
 -t --entrypoint=tensorflow_model_server tensorflow/serving:1.13.0-gpu \
 --port=8500 --rest_api_port=8501 \
 --model_name=crnn \
@@ -26,7 +26,7 @@ sudo docker run \
 -d \
 -e CUDA_VISIBLE_DEVICES=0 \
 -p 8502:8502 -p 8503:8503 \
---mount type=bind,source=./models/east,target=/models/east \
+--mount type=bind,source=/home/user/Scene_Text_Recognition/models/east,target=/models/east \
 -t --entrypoint=tensorflow_model_server tensorflow/serving:1.13.0-gpu \
 --port=8502 --rest_api_port=8503 \
 --model_name=east \
