@@ -32,5 +32,5 @@
 
 ## 测试
 
-测试：https://IP:8080/test
-其他接口见：https://github.com/MagicianQi/Scene_Text_Recognition/blob/master/flask_server.py
+* 测试：https://IP:8080/test
+* 其他接口见：https://github.com/MagicianQi/Scene_Text_Recognition/blob/master/flask_server.py
