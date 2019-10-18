@@ -20,7 +20,7 @@ logger = Logger(RECORD_LOG_FILE_PATH, "record")
 
 @app.route("/")
 def homepage():
-    return "Welcome to the SOUL Face Verification REST API!"
+    return "Scene_Text_Recognition REST API!"
 
 
 @app.route("/health")
