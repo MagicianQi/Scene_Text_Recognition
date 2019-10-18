@@ -20,7 +20,7 @@ logger = Logger(RECORD_LOG_FILE_PATH, "record")
 
 @app.route("/")
 def homepage():
-    return "Scene_Text_Recognition REST API!"
+    return "Scene Text Recognition REST API!"
 
 
 @app.route("/health")
