@@ -1,7 +1,7 @@
 # Redis
-REDIS_HOST = "r-bp1c5729bd88eb14.redis.rds.aliyuncs.com"
-REDIS_PORT = "6379"
-REDIS_PASSWORD = "Soul2016GGHA"
+REDIS_HOST = ""
+REDIS_PORT = ""
+REDIS_PASSWORD = ""
 
 # Model
 EAST_API_URL = "http://text_detection:8503/v1/models/east:predict"
