@@ -8,7 +8,7 @@
 * Advanced EAST 以及 CRNN 都使用TF Serving部署。
 * EAST TF Serving接收图片base64，比直接接收图像速度快很多。
 * CRNN模型中将LSTM改为CUDNNLSTM，速度提升约4倍。
-* 使用docker提供服务。
+* 使用docker部署服务。
 
 ## 环境
 
