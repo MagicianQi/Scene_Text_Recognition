@@ -1,5 +1,5 @@
 # 指定父镜像
-FROM harbor.soulapp-inc.cn/soul-ops/flask-uwsgi-python-centos:3.6.5
+FROM flask-uwsgi-python-centos:3.6.5
 # 声明镜像制作人
 MAINTAINER "qishuo"
 # 将项目拷贝到镜像的/opt/app/目录下
