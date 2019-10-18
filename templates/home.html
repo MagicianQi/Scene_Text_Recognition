@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <style>
+        form > input {
+            display: none;
+        }
+        img.ui.image {
+            display: inline-block;
+        }
+        .ui.grid {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ui ui middle aligned center aligned grid">
+    <div class="eleven wide column">
+        <div class="ui fluid action input">
+            <input id="urlinput" type="text" placeholder="网址">
+            <button class="ui button" onclick="process_url($('#urlinput').val())">OCR识别</button>
+        </div>
+    </div>
+    <div class="eight wide column">
+        <div class="ui visible message">
+            <p id="message">输入网址</p>
+        </div>
+    </div>
+    <div class="fourteen wide column">
+        <form id="fileform" class="ui form" action="#" method="post" enctype="multipart/form-data">
+            <input id="fileinput" type="file" onchange="process(this);"/>
+            <label id="result" for="fileinput">
+                <img id="imageinput" class="ui image" src="static/w.jpg" alt="输入图片"/>
+            </label>
+        </form>
+    </div>
+</div>
+
+<div class="ui basic modal">
+    <div class="ui icon header">
+        <i class="cloud upload icon"></i>
+        识别中
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script>
+    function process_url(url) {
+        const dimmer = $('.modal');
+        dimmer.modal('show');
+        $.ajax({
+            url: '/api/draw?ImageUrl=' + encodeURIComponent(url),
+            type: 'get',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response) {
+		    if (response === "static/w.jpg"){
+	                $("#message").text("成功,但图片里没有字！！！");
+		    }
+		    else {
+	                $("#message").text("成功！！！");
+		    }
+                    $("#result").html("<img class='ui image' src='" + response + "'>");
+                }
+                else {
+                    $("#message").text("成功，图片上没有字");
+                }
+            },
+            error: function() {
+                $("#message").text("失败，请检查链接是否正确");
+            },
+            complete: function () {
+                dimmer.modal('hide');
+            }
+        });
+    }
+    function process(item) {
+        const uploadData = new FormData(), dimmer = $('.modal');
+        dimmer.modal('show');
+        uploadData.append('upload', item.files[0]);
+        $.ajax({
+            url: '/api/score/file',
+            type: 'post',
+            data: uploadData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response) {
+                    $("#message").text("识别成功");
+                    $("#result").html("<img class='ui image' src='" + response + "'>");
+                }
+                else {
+                    $("#message").text("请输出链接");
+                }
+            },
+            error: function() {
+                $("#message").text("请输出链接");
+            },
+            complete: function () {
+                dimmer.modal('hide');
+            }
+        });
+    }
+    $('.ui.modal').modal({
+        closable: false,
+        transition: 'fade',
+        duration: 200
+    });
+</script>
+</body>
+</html>
